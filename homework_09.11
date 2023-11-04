@@ -1,0 +1,45 @@
+class Figure():
+    def __init__(self, S):
+        self.inf = 'figure'
+        self.s = S
+
+    def area(self):
+        return self.s
+
+    def info(self):
+        print(f'Class: {self.inf}\nArea = {self.area()}')
+
+
+class Triangle(Figure):
+    def __init__(self, a, b, c):
+        self.inf = 'triangle'
+        self.a = a
+        self.b = b
+        self.c = c
+
+    def area(self):
+        p = (self.a + self.b + self.c) / 2
+        self.s = (p * (p - self.a) * (p - self.b) * (p - self.c)) ** 0.5
+        return self.s
+
+
+class Rectangle(Figure):
+    def __init__(self, a, b):
+        self.inf = 'rectangle'
+        self.a = a
+        self.b = b
+
+    def area(self):
+        self.s = self.a * self.b
+        return self.s
+
+
+class Square(Rectangle):
+    def __init__(self, a):
+        self.inf = 'square'
+        self.a = a
+        self.b = a
+
+    def area(self):
+        self.s = super().area()
+        return self.s
