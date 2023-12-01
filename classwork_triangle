@@ -1,0 +1,44 @@
+class Triangle():
+    def __init__(self, a, b, c):
+        if self.check(a, b, c)[0]:
+            self.a = a
+            self.b = b
+            self.c = c
+        else:
+            raise ValueError(self.check(a, b, c)[1])
+
+    def check(self, a, b, c):
+        if isinstance(a, int | float) and isinstance(b, int | float) and isinstance(c, int | float):
+            if min(a, b, c) > 0:
+                if max(a, b, c) < (a + b + c - max(a, b, c)):
+                    return [True]
+                return [False, 'Невозможно по неравенству треугольника']
+            return [False, 'Невозможно, вы ввели неположительное число']
+        return [False, 'Невозможно, вы ввели не число']
+
+    def __str__(self):
+        return f'Это треугольник со сторонами {self.a}, {self.b}, {self.c}'
+
+    def __repr__(self):
+        return f'Стороны: {self.a}, {self.b}, {self.c}'
+
+    def pperimeter(self):
+        self.p = (self.a + self.b + self. c) / 2
+        return self.p
+
+    def area(self):
+        self.pperimeter()
+        self.s = (self.p * (self.p - self.a) * (self.p - self.b) * (self.p - self.c)) ** 0.5
+        return self.s
+
+
+x = Triangle(3, 4, 5)
+d = Triangle(3, 4, 6)
+y = Triangle(2, 3, 4)
+sp = [x, d, y]
+print(sp)
+sp = sorted(sp, key=lambda i: i.pperimeter())
+
+
+print(sp)
+print(x)
