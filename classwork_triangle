@@ -4,6 +4,8 @@ class Triangle():
             self.a = a
             self.b = b
             self.c = c
+            self.p = self.pperimeter()
+            self.s = self.area()
         else:
             raise ValueError(self.check(a, b, c)[1])
 
@@ -23,22 +25,59 @@ class Triangle():
         return f'Стороны: {self.a}, {self.b}, {self.c}'
 
     def pperimeter(self):
-        self.p = (self.a + self.b + self. c) / 2
-        return self.p
+        return (self.a + self.b + self. c) / 2
 
     def area(self):
-        self.pperimeter()
-        self.s = (self.p * (self.p - self.a) * (self.p - self.b) * (self.p - self.c)) ** 0.5
-        return self.s
+        return (self.p * (self.p - self.a) * (self.p - self.b) * (self.p - self.c)) ** 0.5
+
+    def __eq__(self, other):
+        if type(other) != Triangle:
+            raise ValueError('Сравнивание не с треугольником')
+        if {self.a, self.b, self.c} == {other.a, other.b, other.c}:
+            return True
+            return True
+        return False
+
+    def __ne__(self, other):
+        if type(other) != Triangle:
+            raise ValueError('Сравнивание не с треугольником')
+        if {self.a, self.b, self.c} != {other.a, other.b, other.c}:
+            return True
+        return False
+
+    def __lt__(self, other):
+        if type(other) != Triangle:
+            raise ValueError('Сравнивание не с треугольником')
+        if self.s < other.s:
+            return True
+        return False
+
+    def __gt__(self, other):
+        if type(other) != Triangle:
+            raise ValueError('Сравнивание не с треугольником')
+        if self.s > other.s:
+            return True
+        return False
+
+    def __le__(self, other):
+        if type(other) != Triangle:
+            raise ValueError('Сравнивание не с треугольником')
+        if self.s <= other.s:
+            return True
+        return False
+
+    def __ge__(self, other):
+        if type(other) != Triangle:
+            raise ValueError('Сравнивание не с треугольником')
+        if self.s >= other.s:
+            return True
+        return False
 
 
 x = Triangle(3, 4, 5)
 d = Triangle(3, 4, 6)
 y = Triangle(2, 3, 4)
+a = 8190
 sp = [x, d, y]
-print(sp)
-sp = sorted(sp, key=lambda i: i.pperimeter())
-
-
-print(sp)
-print(x)
+sp = sorted(sp, key=lambda i: i.p)
+print(x >= y)
