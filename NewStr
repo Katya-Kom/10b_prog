@@ -16,7 +16,7 @@ class NewStr():
     def __lt__(self, other):
         if type(other) not in [str, NewStr]:
             raise ValueError('Сравнение NewStr не с строкой')
-        if len(self.st) > len(other):
+        if len(self.st) < len(other):
             return True
         else:
             return False
@@ -24,7 +24,7 @@ class NewStr():
     def __gt__(self, other):
         if type(other) not in [str, NewStr]:
             raise ValueError('Сравнение NewStr не с строкой')
-        if len(self.st) < len(other):
+        if len(self.st) > len(other):
             return True
         else:
             return False
