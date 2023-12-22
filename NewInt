@@ -1,0 +1,51 @@
+class NewInt():
+    def __init__(self, n):
+        self.s = sum(map(int, list(str(n))))
+
+    def __eq__(self, other):
+        if type(other) not in [int, NewInt]:
+            raise ValueError('Сравнение NewInt не с числом')
+        if type(other) == NewInt:
+            return self.s == other.s
+        if type(other) == int:
+            return self.s == sum(map(int, list(str(other))))
+
+    def __lt__(self, other):
+        if type(other) not in [int, NewInt]:
+            raise ValueError('Сравнение NewStr не с строкой')
+        if type(other) == NewInt:
+            return self.s < other.s
+        if type(other) == int:
+            return self.s < sum(map(int, list(str(other))))
+
+    def __gt__(self, other):
+        if type(other) not in [int, NewInt]:
+            raise ValueError('Сравнение NewStr не с строкой')
+        if type(other) == NewInt:
+            return self.s > other.s
+        if type(other) == int:
+            return self.s > sum(map(int, list(str(other))))
+
+    def __ne__(self, other):
+        if type(other) not in [int, NewInt]:
+            raise ValueError('Сравнение NewStr не с строкой')
+        if type(other) == NewInt:
+            return self.s != other.s
+        if type(other) == int:
+            return self.s != sum(map(int, list(str(other))))
+
+    def __le__(self, other):
+        if type(other) not in [int, NewInt]:
+            raise ValueError('Сравнение NewStr не с строкой')
+        if type(other) == NewInt:
+            return self.s <= other.s
+        if type(other) == int:
+            return self.s <= sum(map(int, list(str(other))))
+
+    def __ge__(self, other):
+        if type(other) not in [int, NewInt]:
+            raise ValueError('Сравнение NewStr не с строкой')
+        if type(other) == NewInt:
+            return self.s >= other.s
+        if type(other) == int:
+            return self.s >= sum(map(int, list(str(other))))
