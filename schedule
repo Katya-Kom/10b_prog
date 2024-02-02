@@ -1,0 +1,71 @@
+class Lesson():
+    def __init__(self, name='Математика'):
+        self.name = name
+
+    def __repr__(self):
+        return self.name
+
+    def __str__(self):
+        return self.name
+
+
+class Day():
+    def __init__(self, lessons,  day='Понедельник'):
+        self.day = day
+        self.lessons = lessons
+
+    def __iter__(self):
+        return iter(self.lessons)
+
+    def __repr__(self):
+        return f'{self.day}: {self.lessons})'
+
+    def __str__(self):
+        return self.day
+
+    def __str__(self):
+        return f'{self.day}: {self.lessons}'
+
+    def add_lesson(self, lesson):
+        self.lessons.append(lesson)
+
+    def change_lesson(self, num_del, add_les):
+        if len(self.lessons) >= num_del > 0:
+            self.lessons[num_del - 1] = add_les
+
+    def delete_lesson(self, num_del):
+        if len(self.lessons) >= num_del > 0:
+            self.lessons.pop(num_del - 1)
+
+
+class Schedule():
+    def __init__(self, days):
+        self.days = days
+
+    def __iter__(self):
+        return iter(self.days)
+
+    def add_day(self, day):
+        self.days.append(day)
+
+
+rus = Lesson('Русский')
+math = Lesson('Математика')
+eng = Lesson('Английский')
+phys = Lesson('Физика')
+chem = Lesson('Химия')
+prog = Lesson('Программирование')
+Monday = Day([rus, math], 'Понедельник')
+Tuesday = Day([phys, prog], 'Вторник')
+Wednesday = Day([chem, eng], 'Среда')
+Week = Schedule([Monday, Tuesday, Wednesday])
+for i in Monday:
+    print(i)
+print('*' * 20)
+Monday.add_lesson(phys)
+Tuesday.change_lesson(1, eng)
+Wednesday.delete_lesson(2)
+Thursday = Day([prog, chem, phys, math], 'Четверг')
+Week.add_day(Thursday)
+for j in Week:
+    print(j)
