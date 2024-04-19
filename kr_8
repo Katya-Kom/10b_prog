@@ -1,0 +1,14 @@
+from functools import lru_cache
+
+@lru_cache(None)
+def calc(n, en):
+    if n == 5500 and en == 0:
+        return 1
+    elif en > 0 and n < 5500:
+        en = en - len(str(n))
+        return calc(n + 3, en) + calc(n * 4, en) + calc(n * 5, en)
+    else:
+        return 0
+
+
+print(calc(1, 1000))
