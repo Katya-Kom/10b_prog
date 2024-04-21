@@ -1,0 +1,23 @@
+from functools import lru_cache
+
+@lru_cache(None)
+def calc(n, can_sub, is37):
+    if not can_sub: #последнее было вычитание, сейчас нельзя уже использовать
+        if n == 37:
+            is37 = True
+        if n > 50 or n % 10 == 5:
+            return 0
+        elif n == 50 and is37:
+            return 1
+        return calc(n + 5, True, is37) + calc(n * 2, True, is37)
+    if can_sub: # можно вычитать
+        if n == 37:
+            is37 = True
+        if n % 10 == 5 or n > 52:
+            return 0
+        elif n == 50 and is37:
+            return 1
+        return calc(n + 5, True, is37) + calc(n * 2, True, is37) + calc(n - 1, False, is37) + calc(n - 2, False, is37)
+
+
+print(calc(7, True, False))
