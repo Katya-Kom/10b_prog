@@ -1,0 +1,30 @@
+from functools import lru_cache
+
+
+def moves(heap):
+    a, b = heap
+    if a > b:
+        return (a + 1, b), (a + 2, b), (a + 3, b), (a, b * 2)
+    if a < b:
+        return (a, b + 1), (a, b + 2), (a, b + 3), (a * 2, b)
+    if a == b:
+        return (a, b + 1), (a, b + 2), (a, b + 3), (a + 1, b), (a + 2, b), (a + 3, b)
+
+
+@lru_cache(None)
+def game(heap):
+    if sum(heap) >= 60:
+        return 'END'
+    elif any(game(x) == 'END' for x in moves(heap)):
+        return 'P1'
+    elif all(game(x) == 'P1' for x in moves(heap)):
+        return 'V1'
+    elif any(game(x) == 'V1' for x in moves(heap)):
+        return 'P2'
+    elif all(game(x) == 'P1' or game(x) == 'P2' for x in moves(heap)):
+        return 'V2'
+
+
+for s in range(1, 34):
+    if game((25, s)) == 'V2':
+        print(s)
